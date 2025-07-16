@@ -66,24 +66,32 @@ const aprobados = new Set();
 
 function crearMalla() {
   const malla = document.getElementById("malla");
+  malla.innerHTML = "";
+
   for (let i = 1; i <= 11; i++) {
     const contenedor = document.createElement("div");
     contenedor.className = "semestre";
     contenedor.innerHTML = `<h2>Semestre ${i}</h2>`;
 
-    ramos.filter(r => r.semestre === i).forEach(ramo => {
-      const div = document.createElement("div");
-      div.className = "ramo";
-      div.id = ramo.codigo;
-      div.textContent = `${ramo.codigo}: ${ramo.nombre}`;
-      div.onclick = () => toggleRamo(ramo);
-      contenedor.appendChild(div);
-    });
+    ramos
+      .filter(r => r.semestre === i)
+      .forEach(ramo => {
+        const div = document.createElement("div");
+        div.className = "ramo";
+        div.id = ramo.codigo;
+        div.textContent = `${ramo.codigo}: ${ramo.nombre}`;
+        div.onclick = () => toggleRamo(ramo);
+        contenedor.appendChild(div);
+      });
 
     malla.appendChild(contenedor);
   }
 
   actualizarRamos();
+}
+
+function puedeActivarse(ramo) {
+  return ramo.prerequisitos.every(c => aprobados.has(c));
 }
 
 function toggleRamo(ramo) {
@@ -98,15 +106,12 @@ function toggleRamo(ramo) {
   actualizarRamos();
 }
 
-function puedeActivarse(ramo) {
-  return ramo.prerequisitos.every(c => aprobados.has(c));
-}
-
 function actualizarRamos() {
   ramos.forEach(ramo => {
     const div = document.getElementById(ramo.codigo);
-    div.className = "ramo";
+    if (!div) return;
 
+    div.className = "ramo"; // reset
     if (aprobados.has(ramo.codigo)) {
       div.classList.add("aprobado");
     } else if (!puedeActivarse(ramo)) {
