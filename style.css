@@ -1,48 +1,61 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
-  color: #003366;
+  background-color: #f9f9f9;
   padding: 20px;
   font-size: 14px;
 }
 
 h1 {
   text-align: center;
-  color: #003366;
+  color: #333;
+  margin-bottom: 30px;
 }
 
 #malla {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
 }
 
 .semestre {
-  background-color: #e6f0ff;
-  border: 1px solid #99ccff;
-  padding: 10px;
+  border: 2px solid #999;
   border-radius: 10px;
+  padding: 15px;
   width: 300px;
+  background-color: #fff;
 }
 
 .semestre h2 {
   text-align: center;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .ramo {
-  background-color: #d9ecff;
-  margin: 5px 0;
-  padding: 5px;
-  border: 1px solid #66b2ff;
+  padding: 8px;
+  margin: 6px 0;
   border-radius: 5px;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
+  border: 1px solid #ccc;
 }
 
-.ramo.disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+/* Colores según estado */
+.ramo.bloqueado {
+  background-color: #ccc;
   color: #666;
+  cursor: not-allowed;
+}
+
+.ramo.pendiente {
+  background-color: #ffc0cb; /* Rosado */
+  color: #000;
+}
+
+.ramo.aprobado {
+  background-color: #9370db; /* Morado */
+  color: #fff;
+  text-decoration: line-through;
 }
