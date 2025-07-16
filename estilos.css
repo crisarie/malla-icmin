@@ -1,1 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe6f0;
+    text-align: center;
+}
+
+h1 {
+    color: #d63384;
+}
+
+.malla {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+}
+
+.curso {
+    background-color: #f8bbd0;
+    border: 2px solid #d63384;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.curso.aprobado {
+    background-color: #d1ffd6;
+    text-decoration: line-through;
+}
+
+.curso.bloqueado {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+    color: #aaa;
+    cursor: not-allowed;
+}
 
